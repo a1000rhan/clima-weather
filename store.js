@@ -33,11 +33,17 @@ class Source {
           latitude,
           longitude,
         });
+        this.loading = false;
+
         const res = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=27938e851274fbdb39a19dc8c09410dc`
         );
         this.weather = res.data;
-        console.log(this.weather);
+        console.log(
+          "🚀 ~ file: store.js ~ line 43 ~ Source ~ getLocation= ~ this.weather",
+          this.weather
+        );
+        this.loading = false;
       }
     } catch (error) {
       console.log(
@@ -48,5 +54,5 @@ class Source {
   };
 }
 const data = new Source();
-
+data.getLocation();
 export default data;

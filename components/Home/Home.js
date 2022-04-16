@@ -1,17 +1,19 @@
 import React from "react";
-import { Button } from "native-base";
+import { Button, Spinner } from "native-base";
 import { StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
 import axios from "axios";
 import data from "../../store";
+import Card from "./Card";
 
 const Home = () => {
-  const myWeather = data.weather.main.temp;
+  data.loading && <Spinner />;
+
+  const myWeather = data.weather;
   return (
     <View>
-      <Text>Hello</Text>
-      <Text>{myWeather}</Text>
-      <Button onPress={() => data.getLocation()}>Show me my Location</Button>
+      <Card myWeather={myWeather} />
+      <Button onPress={() => data.getLocation()}>Get my Location</Button>
     </View>
   );
 };
