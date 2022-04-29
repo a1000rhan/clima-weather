@@ -1,11 +1,14 @@
 import { Spinner } from "native-base";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import data from "../../store";
 
 const Card = ({ myWeather }) => {
+  console.log("🚀 ~ file: Card.js ~ line 7 ~ Card ~ myWeather", myWeather);
   data.loading && <Spinner />;
-  let temper = Math.round(myWeather.main.temp - 273.15);
+  const [temper, SetTemper] = useState(
+    Math.round(myWeather.main?.temp - 273.15)
+  );
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{myWeather.name}</Text>
