@@ -34,7 +34,9 @@ const Home = () => {
     >
       <SafeAreaView>
         <Card myWeather={weather} />
-        <Button onPress={theCond}>Get my Location</Button>
+        <Button marginTop={10} onPress={theCond}>
+          Get my Location
+        </Button>
       </SafeAreaView>
     </ImageBackground>
   );
