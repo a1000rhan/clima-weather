@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Spinner } from "native-base";
 import {
   StyleSheet,
@@ -15,11 +15,15 @@ import Card from "./Card";
 const Home = () => {
   // const cond = ["clouds", "rain", "dust", "sunny"];
 
-  data.loading && <Spinner />;
+  if (data.loading) {
+    <Spinner style={styles.wait} />;
+    <Text style={styles.wait}>Loading</Text>;
+  }
+  const [weather, setWeather] = useState(data.weather);
 
   const theCond = async () => {
     await data.getLocation();
-    await data.weather;
+    setWeather(data.weather);
   };
   return (
     <ImageBackground
@@ -29,7 +33,7 @@ const Home = () => {
       }}
     >
       <SafeAreaView>
-        <Card myWeather={data.weather} />
+        <Card myWeather={weather} />
         <Button onPress={theCond}>Get my Location</Button>
       </SafeAreaView>
     </ImageBackground>
@@ -42,5 +46,12 @@ const styles = StyleSheet.create({
   bk: {
     width: "100%",
     height: "100%",
+  },
+  wait: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

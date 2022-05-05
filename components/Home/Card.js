@@ -1,11 +1,13 @@
 import { Spinner } from "native-base";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import data from "../../store";
 
 const Card = ({ myWeather }) => {
-  console.log("🚀 ~ file: Card.js ~ line 7 ~ Card ~ myWeather", myWeather);
-  data.loading && <Spinner />;
+  console.log(data.loading);
+  if (data.loading) {
+    <Spinner style={styles.wait} />;
+  }
 
   const temper = Math.round(myWeather.main?.temp - 273.15);
 
@@ -33,5 +35,12 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 20,
+  },
+  wait: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

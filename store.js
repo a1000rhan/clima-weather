@@ -33,6 +33,7 @@ class Source {
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=27938e851274fbdb39a19dc8c09410dc`
       );
       this.weather = res.data;
+      this.loading = false;
     } catch (error) {
       console.log(
         "🚀 ~ file: store.js ~ line 42 ~ Source ~ getLocation= ~ error",
